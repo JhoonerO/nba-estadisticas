@@ -1,0 +1,51 @@
+.partidos-container {
+    padding: 20px;
+  }
+  
+  .lista-partidos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .partido-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .equipos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .equipo {
+    color: #333;
+  }
+  
+  .estado {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+  }
+  
+  .sin-partidos {
+    color: #888;
+    font-style: italic;
+    margin-top: 20px;
+  }
+
+  .selector-fecha {
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  
+  
