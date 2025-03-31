@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import JugadorCard from "./componentes/JugadorCard";
 
 function App() {
   const [jugadores, setJugadores] = useState([]);
@@ -6,13 +7,9 @@ function App() {
   const [pagina, setPagina] = useState(1);
 
   useEffect(() => {
-    let url = "";
-
-    if (busqueda) {
-      url = `https://api.balldontlie.io/v1/players?search=${busqueda}`;
-    } else {
-      url = `https://api.balldontlie.io/v1/players?per_page=10&page=${pagina}`;
-    }
+    const url = busqueda
+      ? `https://api.balldontlie.io/v1/players?search=${busqueda}`
+      : `https://api.balldontlie.io/v1/players?per_page=10&page=${pagina}`;
 
     fetch(url, {
       headers: {
@@ -36,7 +33,7 @@ function App() {
         value={busqueda}
         onChange={(e) => {
           setBusqueda(e.target.value);
-          setPagina(1); // reiniciar paginación al buscar
+          setPagina(1);
         }}
         style={{
           padding: "8px",
@@ -55,32 +52,12 @@ function App() {
         }}
       >
         {jugadores.length > 0 ? (
-          jugadores.map((j) => (
-            <div
-              key={j.id}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "16px",
-                background: "#fff",
-                boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-              }}
-            >
-              <h3 style={{ margin: "0 0 8px" }}>
-                {j.first_name} {j.last_name}
-              </h3>
-              <p style={{ margin: 0 }}>{j.team.full_name}</p>
-              <p style={{ fontSize: "14px", color: "#666" }}>
-                Posición: {j.position || "N/A"}
-              </p>
-            </div>
-          ))
+          jugadores.map((j) => <JugadorCard key={j.id} jugador={j} />)
         ) : (
           <p>No se encontraron jugadores.</p>
         )}
       </div>
 
-      {/* Mostrar botones solo cuando no hay búsqueda activa */}
       {!busqueda && (
         <div style={{ marginTop: "20px", display: "flex", gap: "10px", alignItems: "center" }}>
           <button onClick={() => setPagina((p) => Math.max(p - 1, 1))}>Anterior</button>
