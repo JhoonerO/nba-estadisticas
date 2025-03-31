@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../estilos/equipos.css";
 
 function ListaEquipos() {
   const [equipos, setEquipos] = useState([]);
@@ -11,60 +13,70 @@ function ListaEquipos() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // Solo equipos con conferencia (descarta los que no tienen)
-        const activos = data.data.filter((e) => e.conference);
+        // Solo equipos activos con conferencia definida
+        const activos = data.data.filter((e) => e.conference !== "");
         setEquipos(activos);
       })
-      .catch((err) => console.error("Error al obtener equipos:", err));
+      .catch((err) => console.error("Error al cargar equipos:", err));
   }, []);
 
-  const este = equipos.filter((e) => e.conference === "East");
-  const oeste = equipos.filter((e) => e.conference === "West");
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Equipos NBA</h2>
-  
-      <div style={{ display: "flex", gap: "50px", flexWrap: "wrap" }}>
-        {/* Este */}
-        <div>
-          <h3>🏀 Conferencia Este</h3>
-          {este.map((equipo) => (
-            <div key={equipo.id} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-              <img
-                src={`https://a.espncdn.com/i/teamlogos/nba/500/${equipo.abbreviation}.png`}
+    <div className="equipos-container">
+      <h1>Equipos NBA</h1>
+
+      <h2>Conferencia Este</h2>
+      <div className="grid-equipos">
+        {equipos
+          .filter((e) => e.conference === "East")
+          .map((equipo) => (
+            <Link
+              key={equipo.id}
+              to={`/equipos/${equipo.id}`}
+              className="equipo-card"
+            >
+              {equipo.id <= 30 && (
+                <img
+                src={`https://cdn.nba.com/logos/nba/${equipo.id}/global/L/logo.svg`}
                 alt={equipo.full_name}
-                style={{ width: "40px", height: "40px", marginRight: "10px", objectFit: "contain" }}
-                onError={(e) => (e.target.style.display = "none")} // por si falla
+                className="logo-equipo"
+                onError={(e) => e.target.style.display = "none"}
               />
-              <span>
-                {equipo.full_name} – {equipo.city}
-              </span>
-            </div>
+              
+              )}
+              <h3>{equipo.full_name}</h3>
+              <p><strong>Ciudad:</strong> {equipo.city}</p>
+              <p><strong>División:</strong> {equipo.division}</p>
+            </Link>
           ))}
-        </div>
-  
-        {/* Oeste */}
-        <div>
-          <h3>🏀 Conferencia Oeste</h3>
-          {oeste.map((equipo) => (
-            <div key={equipo.id} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-              <img
-                src={`https://a.espncdn.com/i/teamlogos/nba/500/${equipo.abbreviation}.png`}
-                alt={equipo.full_name}
-                style={{ width: "40px", height: "40px", marginRight: "10px", objectFit: "contain" }}
-                onError={(e) => (e.target.style.display = "none")}
-              />
-              <span>
-                {equipo.full_name} – {equipo.city}
-              </span>
-            </div>
+      </div>
+
+      <h2>Conferencia Oeste</h2>
+      <div className="grid-equipos">
+        {equipos
+          .filter((e) => e.conference === "West")
+          .map((equipo) => (
+            <Link
+              key={equipo.id}
+              to={`/equipos/${equipo.id}`}
+              className="equipo-card"
+            >
+              {equipo.id <= 30 && (
+               <img
+               src={`https://cdn.nba.com/logos/nba/${equipo.id}/global/L/logo.svg`}
+               alt={equipo.full_name}
+               className="logo-equipo"
+               onError={(e) => e.target.style.display = "none"}
+             />
+             
+              )}
+              <h3>{equipo.full_name}</h3>
+              <p><strong>Ciudad:</strong> {equipo.city}</p>
+              <p><strong>División:</strong> {equipo.division}</p>
+            </Link>
           ))}
-        </div>
       </div>
     </div>
   );
-  
 }
 
 export default ListaEquipos;
