@@ -24,32 +24,47 @@ function ListaEquipos() {
   return (
     <div style={{ padding: "20px" }}>
       <h2>Equipos NBA</h2>
-
+  
       <div style={{ display: "flex", gap: "50px", flexWrap: "wrap" }}>
+        {/* Este */}
         <div>
           <h3>🏀 Conferencia Este</h3>
-          <ul>
-            {este.map((equipo) => (
-              <li key={equipo.id}>
+          {este.map((equipo) => (
+            <div key={equipo.id} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+              <img
+                src={`https://a.espncdn.com/i/teamlogos/nba/500/${equipo.abbreviation}.png`}
+                alt={equipo.full_name}
+                style={{ width: "40px", height: "40px", marginRight: "10px", objectFit: "contain" }}
+                onError={(e) => (e.target.style.display = "none")} // por si falla
+              />
+              <span>
                 {equipo.full_name} – {equipo.city}
-              </li>
-            ))}
-          </ul>
+              </span>
+            </div>
+          ))}
         </div>
-
+  
+        {/* Oeste */}
         <div>
           <h3>🏀 Conferencia Oeste</h3>
-          <ul>
-            {oeste.map((equipo) => (
-              <li key={equipo.id}>
+          {oeste.map((equipo) => (
+            <div key={equipo.id} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+              <img
+                src={`https://a.espncdn.com/i/teamlogos/nba/500/${equipo.abbreviation}.png`}
+                alt={equipo.full_name}
+                style={{ width: "40px", height: "40px", marginRight: "10px", objectFit: "contain" }}
+                onError={(e) => (e.target.style.display = "none")}
+              />
+              <span>
                 {equipo.full_name} – {equipo.city}
-              </li>
-            ))}
-          </ul>
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
+  
 }
 
 export default ListaEquipos;
