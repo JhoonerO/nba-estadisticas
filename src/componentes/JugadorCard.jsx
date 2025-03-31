@@ -12,9 +12,29 @@ function JugadorCard({ jugador }) {
         <h3 style={{ margin: "0 0 8px" }}>
           {jugador.first_name} {jugador.last_name}
         </h3>
-        <p style={{ margin: 0 }}>{jugador.team.full_name}</p>
-        <p style={{ fontSize: "14px", color: "#666" }}>
-          Posición: {jugador.position || "N/A"}
+  
+        <p style={{ margin: "4px 0" }}>
+          <strong>Equipo:</strong> {jugador.team.full_name}
+        </p>
+  
+        <p style={{ margin: "4px 0" }}>
+          <strong>Posición:</strong> {jugador.position || "N/A"}
+        </p>
+  
+        <p style={{ margin: "4px 0" }}>
+          <strong>Altura:</strong> {jugador.height || "No disponible"}
+        </p>
+  
+        <p style={{ margin: "4px 0" }}>
+          <strong>Peso:</strong> {jugador.weight || "No disponible"}
+        </p>
+  
+        <p style={{ margin: "4px 0" }}>
+          <strong>Universidad:</strong> {jugador.college || "No disponible"}
+        </p>
+  
+        <p style={{ margin: "4px 0" }}>
+          <strong>País:</strong> {jugador.country || "No disponible"}
         </p>
       </div>
     );
