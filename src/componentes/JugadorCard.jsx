@@ -17,24 +17,8 @@ function JugadorCard({ jugador }) {
           <strong>Equipo:</strong> {jugador.team.full_name}
         </p>
   
-        <p style={{ margin: "4px 0" }}>
-          <strong>Posición:</strong> {jugador.position || "N/A"}
-        </p>
-  
-        <p style={{ margin: "4px 0" }}>
-          <strong>Altura:</strong> {jugador.height || "No disponible"}
-        </p>
-  
-        <p style={{ margin: "4px 0" }}>
-          <strong>Peso:</strong> {jugador.weight || "No disponible"}
-        </p>
-  
-        <p style={{ margin: "4px 0" }}>
-          <strong>Universidad:</strong> {jugador.college || "No disponible"}
-        </p>
-  
-        <p style={{ margin: "4px 0" }}>
-          <strong>País:</strong> {jugador.country || "No disponible"}
+        <p style={{ margin: "4px 0", fontSize: "14px", color: "#666" }}>
+          Posición: {jugador.position || "N/A"}
         </p>
       </div>
     );

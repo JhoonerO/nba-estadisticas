@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import JugadorCard from "./JugadorCard";
+import "../estilos/jugadores.css";
 
 function Jugadores() {
   const [jugadores, setJugadores] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [pagina, setPagina] = useState(1);
+  const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
 
   useEffect(() => {
     const url = busqueda
@@ -24,7 +26,7 @@ function Jugadores() {
   }, [busqueda, pagina]);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="jugadores-container">
       <h1>Jugadores NBA</h1>
 
       <input
@@ -35,34 +37,54 @@ function Jugadores() {
           setBusqueda(e.target.value);
           setPagina(1);
         }}
-        style={{
-          padding: "8px",
-          fontSize: "16px",
-          marginBottom: "20px",
-          width: "100%",
-          maxWidth: "300px"
-        }}
+        className="buscador"
       />
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "16px"
-        }}
-      >
+      <div className="grid-jugadores">
         {jugadores.length > 0 ? (
-          jugadores.map((j) => <JugadorCard key={j.id} jugador={j} />)
+          jugadores.map((j) => (
+            <div
+              key={j.id}
+              onClick={() => setJugadorSeleccionado(j)}
+              className="tarjeta-clickable"
+            >
+              <JugadorCard jugador={j} />
+            </div>
+          ))
         ) : (
           <p>No se encontraron jugadores.</p>
         )}
       </div>
 
       {!busqueda && (
-        <div style={{ marginTop: "20px", display: "flex", gap: "10px", alignItems: "center" }}>
+        <div className="paginacion">
           <button onClick={() => setPagina((p) => Math.max(p - 1, 1))}>Anterior</button>
           <span>Página: {pagina}</span>
           <button onClick={() => setPagina((p) => p + 1)}>Siguiente</button>
+        </div>
+      )}
+
+      {jugadorSeleccionado && (
+        <div
+          className="modal-overlay"
+          onClick={() => setJugadorSeleccionado(null)}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={() => setJugadorSeleccionado(null)}>❌</button>
+
+            <h3>
+              {jugadorSeleccionado.first_name} {jugadorSeleccionado.last_name}
+            </h3>
+            <p><strong>Equipo:</strong> {jugadorSeleccionado.team.full_name}</p>
+            <p><strong>Posición:</strong> {jugadorSeleccionado.position || "N/A"}</p>
+            <p><strong>Altura:</strong> {jugadorSeleccionado.height || "No disponible"}</p>
+            <p><strong>Peso:</strong> {jugadorSeleccionado.weight || "No disponible"}</p>
+            <p><strong>Universidad:</strong> {jugadorSeleccionado.college || "No disponible"}</p>
+            <p><strong>País:</strong> {jugadorSeleccionado.country || "No disponible"}</p>
+          </div>
         </div>
       )}
     </div>
