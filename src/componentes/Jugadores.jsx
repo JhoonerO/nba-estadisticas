@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import JugadorCard from "./JugadorCard";
 import "../estilos/jugadores.css";
+import { useUsuario } from "../context/UsuarioContext"; // 👈 usar contexto
 
 function Jugadores() {
   const [jugadores, setJugadores] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [pagina, setPagina] = useState(1);
   const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
+  const { usuario } = useUsuario(); // 👈 obtener usuario global
 
   useEffect(() => {
     const url = busqueda
@@ -29,6 +31,7 @@ function Jugadores() {
     <div className="jugadores-container">
       <h1>Jugadores NBA</h1>
 
+      {/* Buscador de jugadores */}
       <input
         type="text"
         placeholder="Buscar jugador"
@@ -40,6 +43,7 @@ function Jugadores() {
         className="buscador"
       />
 
+      {/* Lista de tarjetas */}
       <div className="grid-jugadores">
         {jugadores.length > 0 ? (
           jugadores.map((j) => (
@@ -48,7 +52,7 @@ function Jugadores() {
               onClick={() => setJugadorSeleccionado(j)}
               className="tarjeta-clickable"
             >
-              <JugadorCard jugador={j} />
+              <JugadorCard jugador={j} usuario={usuario} />
             </div>
           ))
         ) : (
@@ -56,14 +60,18 @@ function Jugadores() {
         )}
       </div>
 
+      {/* Paginación */}
       {!busqueda && (
         <div className="paginacion">
-          <button onClick={() => setPagina((p) => Math.max(p - 1, 1))}>Anterior</button>
+          <button onClick={() => setPagina((p) => Math.max(p - 1, 1))}>
+            Anterior
+          </button>
           <span>Página: {pagina}</span>
           <button onClick={() => setPagina((p) => p + 1)}>Siguiente</button>
         </div>
       )}
 
+      {/* Modal con detalles */}
       {jugadorSeleccionado && (
         <div
           className="modal-overlay"
