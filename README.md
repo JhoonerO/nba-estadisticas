@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+NBA Estadísticas
+(Aplicación web de estadísticas NBA con React y PostgreSQL)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Descripción
 
-## Available Scripts
+Aplicación web construida con React para consultar estadísticas de la NBA, utilizando la API balldontlie.io y con integración de base de datos PostgreSQL para guardar favoritos.
 
-In the project directory, you can run:
+🚀 Funcionalidades
 
-### `npm start`
+✔ Ver lista completa de jugadores NBA con búsqueda por nombre
+✔ Explorar equipos organizados por conferencia (Este/Oeste) y división
+✔ Resultados en vivo de partidos del día
+✔ Sistema de favoritos (almacenados en PostgreSQL)
+✔ Filtrado de jugadores por equipo
+✔ Soporte básico para usuarios globales
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🛠️ Tecnologías
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Área	Tecnologías
+Frontend	React
+API Externa	balldontlie.io
+Backend	Node.js + Express
+Base de datos	PostgreSQL
+Control código	Git + GitHub
 
-### `npm test`
+🧪 Instalación local
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clonar repositorio:
 
-### `npm run build`
+bash
+Copy
+git clone https://github.com/JhoonerO/nba-estadisticas.git
+cd nba-estadisticas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Instalar dependencias del frontend:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+bash
+Copy
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Configurar backend:
 
-### `npm run eject`
+bash
+Copy
+cd backend
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Editar archivo backend/index.js con tus credenciales PostgreSQL
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+node index.js
+Iniciar aplicación:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+Copy
+cd ..
+npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+📦 Estructura de la base de datos
 
-## Learn More
+Tabla favoritos:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Campo	            Tipo	            Descripción
+id	              SERIAL (PK)          ID autogenerado
+jugador_id	      INTEGER	           ID del jugador en API
+nombre	          VARCHAR	           Nombre del jugador
+equipo	          VARCHAR	           Nombre del equipo
+usuario	          VARCHAR	           Identificador usuario
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🙋‍♂️ Autor
 
-### Code Splitting
+JhoonerO
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[GitHub Profile](https://github.com/JhoonerO)
