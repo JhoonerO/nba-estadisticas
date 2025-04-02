@@ -59,12 +59,17 @@ npm start
 
 Tabla favoritos:
 
-Campo	            Tipo	            Descripción
-id	              SERIAL (PK)          ID autogenerado
-jugador_id	      INTEGER	           ID del jugador en API
-nombre	          VARCHAR	           Nombre del jugador
-equipo	          VARCHAR	           Nombre del equipo
-usuario	          VARCHAR	           Identificador usuario
+Campo	/ Tipo / Descripción
+
+id            / SERIAL (PK)   / ID autogenerado
+
+jugador_id   / INTEGER      	/ ID del jugador en API
+
+nombre       / VARCHAR	      / Nombre del jugador
+
+equipo      / VARCHAR	        / Nombre del equipo
+    
+usuario	    / VARCHAR         / Identificador usuario
 
 🙋‍♂️ Autor
 
