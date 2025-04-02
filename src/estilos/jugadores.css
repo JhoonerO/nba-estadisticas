@@ -33,7 +33,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.575);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,12 +41,12 @@
   }
   
   .modal-content {
-    background: #fff;
+    background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     width: 300px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px #17408B;
     position: relative;
   }
   

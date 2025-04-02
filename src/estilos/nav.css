@@ -3,9 +3,9 @@
     justify-content: center;
     gap: 20px;
     padding: 16px;
-    background-color: #1e1e2f;
+    background-color: #17408B;
     margin-bottom: 20px;
-    border-bottom: 2px solid #444;
+    border-bottom: 2px solid #000000;
   }
   
   .nav a {
@@ -13,11 +13,11 @@
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 6px;
-    background-color: #292946;
+    background-color: #17408B;
     transition: all 0.3s ease;
   }
   
   .nav a:hover {
-    background-color: #444;
+    background-color: #C9082A;
   }
   

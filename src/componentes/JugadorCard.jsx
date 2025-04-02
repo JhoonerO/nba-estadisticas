@@ -1,8 +1,6 @@
-import { useUsuario } from "../context/UsuarioContext"; // 👈 Importamos el contexto
+import React from "react";
 
-function JugadorCard({ jugador }) {
-  const { usuario } = useUsuario(); // 👈 Obtenemos el usuario global
-
+function JugadorCard({ jugador, usuario }) {
   const agregarFavorito = async () => {
     try {
       await fetch("http://localhost:3001/favoritos", {
@@ -12,7 +10,7 @@ function JugadorCard({ jugador }) {
           jugador_id: jugador.id,
           nombre: `${jugador.first_name} ${jugador.last_name}`,
           equipo: jugador.team.full_name,
-          usuario
+          usuario: usuario // ✅ ahora toma el nombre real
         })
       });
       alert("¡Agregado a favoritos!");
@@ -64,12 +62,14 @@ function JugadorCard({ jugador }) {
         style={{
           marginTop: "10px",
           padding: "8px 12px",
-          backgroundColor: "#007bff",
+          backgroundColor: "#17408B", // Color por defecto
           color: "#fff",
           border: "none",
           borderRadius: "5px",
-          cursor: "pointer"
+          cursor: "pointer",
         }}
+        onMouseEnter={(e) => e.target.style.backgroundColor = "#C9082A"} // Cambio de color al pasar el mouse
+        onMouseLeave={(e) => e.target.style.backgroundColor = "#17408B"} // Vuelve al color original
       >
         ⭐ Agregar a favoritos
       </button>

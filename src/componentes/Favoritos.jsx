@@ -35,7 +35,7 @@ function Favoritos() {
               marginBottom: "10px",
               borderRadius: "8px",
               backgroundColor: "#fff",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.1)"
+              boxShadow: "0 1px 3px rgba(248, 50, 50, 0.1)"
             }}
           >
             <h3>{f.nombre}</h3>

@@ -1,13 +1,32 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
-  }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-  }
-   
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #000000;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://1000marcas.net/wp-content/uploads/2019/12/NBA-Logo.png') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  z-index: -1;  /* Esto asegura que el fondo esté detrás del contenido */
+  opacity: 0.1;  /* Controla la opacidad del fondo sin afectar el contenido */
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;  /* Asegura que el contenido esté sobre el fondo */
+}
+
+.main-content h1, .main-content p {
+  color: #333; /* Ajusta el color del texto para asegurar que sea visible */
+}
