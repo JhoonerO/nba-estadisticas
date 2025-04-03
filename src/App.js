@@ -6,6 +6,9 @@ import JugadoresEquipo from "./componentes/JugadoresEquipo";
 import Retirados from "./componentes/Retirados";
 import Favoritos from "./componentes/Favoritos";
 import TopFavoritos from "./componentes/TopFavoritos";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 import { useUsuario } from "./context/UsuarioContext";
 import { useTema } from "./context/TemaContext";
@@ -67,6 +70,9 @@ function App() {
         <Route path="/retirados" element={<Retirados />} />
         <Route path="/top-favoritos" element={<TopFavoritos />} />
       </Routes>
+
+      <ToastContainer position="top-center" autoClose={2500} /> 
+      
     </BrowserRouter>
   );
 }

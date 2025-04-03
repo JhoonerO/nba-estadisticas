@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import "../estilos/favoritos.css";
 import { API_URL } from "../config";
+import { useUsuario } from "../context/UsuarioContext"; // 👈 Asegurate de tener esto arriba
+
 
 function Favoritos() {
   const [favoritos, setFavoritos] = useState([]);
+  const { usuario } = useUsuario();
+
 
   useEffect(() => {
     fetch(`${API_URL}/favoritos`)
@@ -13,15 +17,18 @@ function Favoritos() {
   }, []);
 
   const eliminarFavorito = async (jugador_id) => {
-    await fetch(`${API_URL}/favoritos/${jugador_id}`, {
-      method: "DELETE"
-    });
-
-    setFavoritos((prev) =>
-      prev.filter((f) => f.jugador_id !== jugador_id)
-    );
+    try {
+      await fetch(`http://localhost:3001/favoritos/${jugador_id}/${usuario}`, {
+        method: "DELETE"
+      });
+  
+      setFavoritos((prev) =>
+        prev.filter((f) => f.jugador_id !== jugador_id || f.usuario !== usuario)
+      );
+    } catch (err) {
+      console.error("Error al eliminar favorito:", err);
+    }
   };
-
   return (
     <div className="favoritos-container">
       <h1>⭐ Jugadores favoritos</h1>
