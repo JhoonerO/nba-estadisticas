@@ -5,14 +5,17 @@ import Partidos from "./componentes/Partidos";
 import JugadoresEquipo from "./componentes/JugadoresEquipo";
 import Retirados from "./componentes/Retirados";
 import Favoritos from "./componentes/Favoritos";
-import { useUsuario } from "./context/UsuarioContext"; // 🧠 importamos el contexto
 import TopFavoritos from "./componentes/TopFavoritos";
+
+import { useUsuario } from "./context/UsuarioContext";
+import { useTema } from "./context/TemaContext";
 
 import "./estilos/nav.css";
 import "./estilos/index.css";
 
 function App() {
-  const { usuario, setUsuario } = useUsuario(); // 🧠 usamos el contexto
+  const { oscuro, toggleTema } = useTema();
+  const { usuario, setUsuario } = useUsuario();
 
   return (
     <BrowserRouter>
@@ -36,6 +39,23 @@ function App() {
             border: "1px solid #ccc"
           }}
         />
+
+        {/* Botón modo oscuro */}
+        <button
+          onClick={toggleTema}
+          style={{
+            marginLeft: "10px",
+            padding: "6px 12px",
+            backgroundColor: "#fff",
+            color: "#17408B",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontWeight: "bold"
+          }}
+        >
+          {oscuro ? "☀️ Modo claro" : "🌙 Modo oscuro"}
+        </button>
       </nav>
 
       <Routes>

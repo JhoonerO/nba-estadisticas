@@ -1,10 +1,11 @@
 import React from "react";
 import "../estilos/jugadores.css"; // Asegurate que esté importado
+import { API_URL } from "../config";
 
 function JugadorCard({ jugador, usuario }) {
   const agregarFavorito = async () => {
     try {
-      await fetch("http://localhost:3001/favoritos", {
+      await fetch(`${API_URL}/favoritos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

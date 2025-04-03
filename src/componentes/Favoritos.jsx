@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import "../estilos/favoritos.css"; // Asegúrate de crear este archivo
+import "../estilos/favoritos.css";
+import { API_URL } from "../config";
 
 function Favoritos() {
   const [favoritos, setFavoritos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/favoritos")
+    fetch(`${API_URL}/favoritos`)
       .then((res) => res.json())
       .then((data) => setFavoritos(data))
       .catch((err) => console.error("Error al cargar favoritos:", err));
   }, []);
 
   const eliminarFavorito = async (jugador_id) => {
-    await fetch(`http://localhost:3001/favoritos/${jugador_id}`, {
+    await fetch(`${API_URL}/favoritos/${jugador_id}`, {
       method: "DELETE"
     });
 

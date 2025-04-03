@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../estilos/topfavoritos.css"; // crea este archivo
+import { API_URL } from "../config";
 
 const TopFavoritos = () => {
   const [jugadores, setJugadores] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/top-favoritos")
+    fetch(`${API_URL}/top-favoritos`)
       .then((res) => res.json())
       .then((data) => setJugadores(data))
       .catch((err) => console.error("Error al cargar top favoritos:", err));

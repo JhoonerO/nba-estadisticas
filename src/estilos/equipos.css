@@ -32,7 +32,12 @@
   height: 60px;
   object-fit: contain;
   margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+
 
 /* ✅ Responsive para pantallas chicas */
 @media (max-width: 480px) {

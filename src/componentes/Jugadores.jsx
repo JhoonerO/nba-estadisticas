@@ -11,22 +11,35 @@ function Jugadores() {
   const { usuario } = useUsuario(); // 👈 obtener usuario global
 
   useEffect(() => {
-    const url = busqueda
-      ? `https://api.balldontlie.io/v1/players?search=${busqueda}`
-      : `https://api.balldontlie.io/v1/players?per_page=10&page=${pagina}`;
-
-    fetch(url, {
-      headers: {
-        Authorization: "1320ce0c-98f2-40ff-aa08-2703457a2d11"
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setJugadores(data.data);
+    const delay = setTimeout(() => {
+      const partes = busqueda.trim().toLowerCase().split(" ");
+      const url = partes[0]
+        ? `https://api.balldontlie.io/v1/players?search=${encodeURIComponent(partes[0])}`
+        : `https://api.balldontlie.io/v1/players?per_page=10&page=${pagina}`;
+  
+      fetch(url, {
+        headers: {
+          Authorization: "1320ce0c-98f2-40ff-aa08-2703457a2d11"
+        }
       })
-      .catch((err) => console.error("Error al buscar jugadores:", err));
+        .then((res) => res.json())
+        .then((data) => {
+          let jugadoresFiltrados = data.data;
+  
+          if (partes.length > 1 && partes[1]) {
+            jugadoresFiltrados = jugadoresFiltrados.filter((j) =>
+              `${j.first_name} ${j.last_name}`.toLowerCase().includes(partes[1])
+            );
+          }
+  
+          setJugadores(jugadoresFiltrados);
+        })
+        .catch((err) => console.error("Error al buscar jugadores:", err));
+    }, 300); // Espera que termines de escribir
+  
+    return () => clearTimeout(delay); // Cancela si seguís escribiendo
   }, [busqueda, pagina]);
-
+  
   return (
     <div className="jugadores-container">
       <h1>Jugadores NBA</h1>
@@ -59,17 +72,6 @@ function Jugadores() {
           <p>No se encontraron jugadores.</p>
         )}
       </div>
-
-      {/* Paginación */}
-      {!busqueda && (
-        <div className="paginacion">
-          <button onClick={() => setPagina((p) => Math.max(p - 1, 1))}>
-            Anterior
-          </button>
-          <span>Página: {pagina}</span>
-          <button onClick={() => setPagina((p) => p + 1)}>Siguiente</button>
-        </div>
-      )}
 
       {/* Modal con detalles */}
       {jugadorSeleccionado && (

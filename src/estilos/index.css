@@ -72,3 +72,52 @@ input, button {
     padding: 0 40px;
   }
 }
+body.modo-oscuro {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.modo-oscuro .nav {
+  background-color: #1f1f1f;
+  border-bottom: 2px solid #333;
+}
+
+body.modo-oscuro .nav a {
+  background-color: transparent;
+  color: #f1f1f1;
+}
+
+body.modo-oscuro .nav a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+body.modo-oscuro input,
+body.modo-oscuro select {
+  background-color: #222;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+body.modo-oscuro .equipo-card,
+body.modo-oscuro .jugador-card,
+body.modo-oscuro .favorito-card,
+body.modo-oscuro .partido-card,
+body.modo-oscuro .modal-content {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-color: #333;
+}
+
+body.modo-oscuro button {
+  background-color: #333;
+  color: #fff;
+}
+
+body.modo-oscuro button:hover {
+  background-color: #555;
+}
+body.modo-oscuro li {
+  background-color: #1f1f1f !important;
+  color: #f1f1f1 !important;
+}
