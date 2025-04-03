@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../estilos/topfavoritos.css"; // crea este archivo
 
 const TopFavoritos = () => {
   const [jugadores, setJugadores] = useState([]);
@@ -12,45 +13,30 @@ const TopFavoritos = () => {
 
   const getMedalla = (index) => {
     switch (index) {
-      case 0:
-        return "🥇";
-      case 1:
-        return "🥈";
-      case 2:
-        return "🥉";
-      default:
-        return "🏀";
+      case 0: return "🥇";
+      case 1: return "🥈";
+      case 2: return "🥉";
+      default: return "🏀";
     }
   };
 
   const getColor = (index) => {
     switch (index) {
-      case 0:
-        return "#FFD700"; // oro
-      case 1:
-        return "#C0C0C0"; // plata
-      case 2:
-        return "#CD7F32"; // bronce
-      default:
-        return "#f0f0f0"; // gris claro
+      case 0: return "oro";
+      case 1: return "plata";
+      case 2: return "bronce";
+      default: return "normal";
     }
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="top-favoritos-container">
       <h2>🏆 Jugadores más votados</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+      <ul className="top-favoritos-lista">
         {jugadores.map((j, index) => (
           <li
             key={index}
-            style={{
-              background: getColor(index),
-              marginBottom: "10px",
-              padding: "12px",
-              borderRadius: "10px",
-              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
-              fontSize: "16px"
-            }}
+            className={`top-favorito-item ${getColor(index)}`}
           >
             {getMedalla(index)} <strong>{j.nombre}</strong> ({j.equipo}) — {j.votos} votos
           </li>

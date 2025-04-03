@@ -1,12 +1,21 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
+/* BASE RESPONSIVE */
+* {
+  box-sizing: border-box;
   margin: 0;
-  padding: 20px;
-  background-color: #ffffff;
-  color: #000000;
-  position: relative;
+  padding: 0;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  line-height: 1.6;
+  padding: 0 16px;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* FONDO NBA */
 body::before {
   content: "";
   position: absolute;
@@ -18,15 +27,48 @@ body::before {
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
-  z-index: -1;  /* Esto asegura que el fondo esté detrás del contenido */
-  opacity: 0.1;  /* Controla la opacidad del fondo sin afectar el contenido */
+  z-index: -1;
+  opacity: 0.08;
 }
 
+/* Contenedor principal para que el contenido esté por encima del fondo */
 .main-content {
   position: relative;
-  z-index: 1;  /* Asegura que el contenido esté sobre el fondo */
+  z-index: 1;
 }
 
-.main-content h1, .main-content p {
-  color: #333; /* Ajusta el color del texto para asegurar que sea visible */
+/* TIPOGRAFÍA ESCALABLE */
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input, button {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* ESPACIADO PARA PANTALLAS GRANDES */
+@media (min-width: 768px) {
+  body {
+    padding: 0 40px;
+  }
 }

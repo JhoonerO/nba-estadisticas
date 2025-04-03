@@ -1,62 +1,138 @@
 .jugadores-container {
-    padding: 20px;
-  }
-  
+  padding: 20px;
+}
+
+.buscador {
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.grid-jugadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.tarjeta-clickable {
+  cursor: pointer;
+}
+
+.paginacion {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.575);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 0 10px #17408B;
+  position: relative;
+}
+
+.modal-content button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ✅ Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
   .buscador {
-    padding: 8px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 300px;
+    max-width: 100%;
+    font-size: 14px;
   }
-  
-  .grid-jugadores {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 16px;
-  }
-  
-  .tarjeta-clickable {
-    cursor: pointer;
-  }
-  
+
   .paginacion {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    flex-direction: column;
+    gap: 8px;
   }
-  
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.575);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
+
   .modal-content {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 0 10px #17408B;
-    position: relative;
+    padding: 16px;
+    font-size: 0.95rem;
   }
-  
-  .modal-content button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+}
+
+.jugador-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.jugador-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.jugador-card h3 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.jugador-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.boton-favorito {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #17408B;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 220px;
+}
+
+.boton-favorito:hover {
+  background-color: #C9082A;
+}
+
+/* ✅ Responsive touch */
+@media (max-width: 480px) {
+  .jugador-card {
+    padding: 12px;
   }
-  
+
+  .jugador-card h3 {
+    font-size: 1rem;
+  }
+
+  .jugador-card p {
+    font-size: 0.9rem;
+  }
+}

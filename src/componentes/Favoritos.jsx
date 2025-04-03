@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../estilos/favoritos.css"; // Asegúrate de crear este archivo
 
 function Favoritos() {
   const [favoritos, setFavoritos] = useState([]);
@@ -15,49 +16,31 @@ function Favoritos() {
       method: "DELETE"
     });
 
-    // Actualizar lista
     setFavoritos((prev) =>
       prev.filter((f) => f.jugador_id !== jugador_id)
     );
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="favoritos-container">
       <h1>⭐ Jugadores favoritos</h1>
 
       {favoritos.length > 0 ? (
         favoritos.map((f) => (
-          <div
-            key={f.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "12px",
-              marginBottom: "10px",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              boxShadow: "0 1px 3px rgba(248, 50, 50, 0.1)"
-            }}
-          >
+          <div key={f.id} className="favorito-card">
             <h3>{f.nombre}</h3>
             <p><strong>Equipo:</strong> {f.equipo}</p>
             <p><strong>Usuario:</strong> {f.usuario}</p>
             <button
+              className="btn-eliminar"
               onClick={() => eliminarFavorito(f.jugador_id)}
-              style={{
-                padding: "6px 10px",
-                backgroundColor: "#dc3545",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer"
-              }}
             >
               Eliminar ❌
             </button>
           </div>
         ))
       ) : (
-        <p>No hay favoritos aún.</p>
+        <p className="no-favoritos">No hay favoritos aún.</p>
       )}
     </div>
   );
