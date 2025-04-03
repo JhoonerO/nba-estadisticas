@@ -8,6 +8,20 @@ function Partidos() {
     return hoy;
   });
 
+  // Función para avanzar un día
+  const avanzarUnDia = () => {
+    const nuevaFecha = new Date(fecha);
+    nuevaFecha.setDate(nuevaFecha.getDate() + 1);
+    setFecha(nuevaFecha.toISOString().slice(0, 10));
+  };
+
+  // Función para retroceder un día
+  const retrocederUnDia = () => {
+    const nuevaFecha = new Date(fecha);
+    nuevaFecha.setDate(nuevaFecha.getDate() - 1);
+    setFecha(nuevaFecha.toISOString().slice(0, 10));
+  };
+
   useEffect(() => {
     fetch(`https://api.balldontlie.io/v1/games?dates[]=${fecha}`, {
       headers: {
@@ -25,6 +39,15 @@ function Partidos() {
     <div className="partidos-container">
       <h2>Partidos del día 🏀</h2>
 
+      <div className="buttons-container">
+        <button onClick={retrocederUnDia} className="button-date">
+          ← Anteriores
+        </button>
+        <button onClick={avanzarUnDia} className="button-date">
+          Proximos →
+        </button>
+      </div>
+
       <input
         type="date"
         value={fecha}
@@ -37,13 +60,27 @@ function Partidos() {
           {partidos.map((p) => (
             <div key={p.id} className="partido-card">
               <div className="equipos">
+                {/* Mostrar logo del equipo local */}
+                <img
+                  src={`/logos/${p.home_team.full_name.toLowerCase().replace(/ /g, "-")}.png`}
+                  alt={p.home_team.full_name}
+                  className="logo-equipo"
+                />
                 <span className="equipo">{p.home_team.full_name}</span>
                 <strong>{p.home_team_score}</strong>
                 <span> vs </span>
                 <strong>{p.visitor_team_score}</strong>
+                {/* Mostrar logo del equipo visitante */}
+                <img
+                  src={`/logos/${p.visitor_team.full_name.toLowerCase().replace(/ /g, "-")}.png`}
+                  alt={p.visitor_team.full_name}
+                  className="logo-equipo"
+                />
                 <span className="equipo">{p.visitor_team.full_name}</span>
               </div>
-              <div className="estado">Estado: {p.status}</div>
+              <div className="estado">
+                Estado: {p.status === "Final" ? "Finalizado" : p.status}
+              </div>
             </div>
           ))}
         </div>

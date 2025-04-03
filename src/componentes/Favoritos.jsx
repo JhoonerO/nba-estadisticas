@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../estilos/favoritos.css";
 import { API_URL } from "../config";
-import { useUsuario } from "../context/UsuarioContext"; // 👈 Asegurate de tener esto arriba
+import { useUsuario } from "../context/UsuarioContext"; 
 
 
 function Favoritos() {

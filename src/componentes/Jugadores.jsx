@@ -1,64 +1,94 @@
 import { useEffect, useState } from "react";
 import JugadorCard from "./JugadorCard";
 import "../estilos/jugadores.css";
-import { useUsuario } from "../context/UsuarioContext"; // 👈 usar contexto
+import { useUsuario } from "../context/UsuarioContext";
 
 function Jugadores() {
   const [jugadores, setJugadores] = useState([]);
   const [busqueda, setBusqueda] = useState("");
-  const [pagina, setPagina] = useState(1);
   const [jugadorSeleccionado, setJugadorSeleccionado] = useState(null);
-  const { usuario } = useUsuario(); // 👈 obtener usuario global
+  const { usuario } = useUsuario();
+
+  const mezclarArray = (arr) => arr.sort(() => Math.random() - 0.5);
 
   useEffect(() => {
-    const delay = setTimeout(() => {
-      const partes = busqueda.trim().toLowerCase().split(" ");
-      const url = partes[0]
-        ? `https://api.balldontlie.io/v1/players?search=${encodeURIComponent(partes[0])}`
-        : `https://api.balldontlie.io/v1/players?per_page=10&page=${pagina}`;
-  
-      fetch(url, {
-        headers: {
-          Authorization: "1320ce0c-98f2-40ff-aa08-2703457a2d11"
-        }
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          let jugadoresFiltrados = data.data;
-  
-          if (partes.length > 1 && partes[1]) {
-            jugadoresFiltrados = jugadoresFiltrados.filter((j) =>
-              `${j.first_name} ${j.last_name}`.toLowerCase().includes(partes[1])
-            );
+    const buscarJugadores = async () => {
+      try {
+        const partes = busqueda.trim().toLowerCase().split(" ");
+        const url = `https://api.balldontlie.io/v1/players?search=${encodeURIComponent(partes[0])}`;
+
+        const res = await fetch(url, {
+          headers: {
+            Authorization: "1320ce0c-98f2-40ff-aa08-2703457a2d11"
           }
-  
-          setJugadores(jugadoresFiltrados);
-        })
-        .catch((err) => console.error("Error al buscar jugadores:", err));
-    }, 300); // Espera que termines de escribir
-  
-    return () => clearTimeout(delay); // Cancela si seguís escribiendo
-  }, [busqueda, pagina]);
-  
+        });
+
+        const data = await res.json();
+        let lista = data.data;
+
+        if (partes.length > 1 && partes[1]) {
+          lista = lista.filter((j) =>
+            `${j.first_name} ${j.last_name}`.toLowerCase().includes(partes[1])
+          );
+        }
+
+        const activos = lista.filter((j) => j.position && j.position !== "N/A");
+        setJugadores(activos);
+      } catch (err) {
+        console.error("Error al buscar jugadores:", err);
+      }
+    };
+
+    const cargarJugadoresActivos = async () => {
+      try {
+        const headers = {
+          Authorization: "1320ce0c-98f2-40ff-aa08-2703457a2d11"
+        };
+
+        // 🌐 Fetch simultáneo de 3 páginas
+        const urls = [1, 2, 3].map((i) =>
+          fetch(`https://api.balldontlie.io/v1/players?per_page=100&page=${i}`, { headers }).then(res => res.json())
+        );
+
+        const resultados = await Promise.all(urls);
+        const todos = resultados.flatMap(r => r.data);
+
+        const activos = todos.filter((j) => j.position && j.position !== "N/A");
+        const aleatorios = mezclarArray(activos).slice(0, 18);
+
+        setJugadores(aleatorios);
+      } catch (err) {
+        console.error("Error al cargar jugadores activos:", err);
+      }
+    };
+
+    const delay = setTimeout(() => {
+      if (busqueda.trim()) {
+        buscarJugadores();
+      } else {
+        cargarJugadoresActivos();
+      }
+    }, 300);
+
+    return () => clearTimeout(delay);
+  }, [busqueda]);
+
   return (
     <div className="jugadores-container">
       <h1>Jugadores NBA</h1>
 
-      {/* Buscador de jugadores */}
       <input
         type="text"
         placeholder="Buscar jugador"
         value={busqueda}
-        onChange={(e) => {
-          setBusqueda(e.target.value);
-          setPagina(1);
-        }}
+        onChange={(e) => setBusqueda(e.target.value)}
         className="buscador"
       />
 
-      {/* Lista de tarjetas */}
       <div className="grid-jugadores">
-        {jugadores.length > 0 ? (
+        {jugadores.length === 0 ? (
+          <p>⏳ Cargando jugadores activos...</p>
+        ) : (
           jugadores.map((j) => (
             <div
               key={j.id}
@@ -68,12 +98,9 @@ function Jugadores() {
               <JugadorCard jugador={j} usuario={usuario} />
             </div>
           ))
-        ) : (
-          <p>No se encontraron jugadores.</p>
         )}
       </div>
 
-      {/* Modal con detalles */}
       {jugadorSeleccionado && (
         <div
           className="modal-overlay"
@@ -89,7 +116,7 @@ function Jugadores() {
               {jugadorSeleccionado.first_name} {jugadorSeleccionado.last_name}
             </h3>
             <p><strong>Equipo:</strong> {jugadorSeleccionado.team.full_name}</p>
-            <p><strong>Posición:</strong> {jugadorSeleccionado.position || "N/A"}</p>
+            <p><strong>Posición:</strong> {jugadorSeleccionado.position}</p>
             <p><strong>Altura:</strong> {jugadorSeleccionado.height || "No disponible"}</p>
             <p><strong>Peso:</strong> {jugadorSeleccionado.weight || "No disponible"}</p>
             <p><strong>Universidad:</strong> {jugadorSeleccionado.college || "No disponible"}</p>

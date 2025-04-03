@@ -9,7 +9,6 @@ import TopFavoritos from "./componentes/TopFavoritos";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import { useUsuario } from "./context/UsuarioContext";
 import { useTema } from "./context/TemaContext";
 
@@ -29,19 +28,23 @@ function App() {
         <Link to="/favoritos">Favoritos</Link>
         <Link to="/top-favoritos">Top Votados</Link>
 
-        {/* Campo para ingresar nombre de usuario */}
-        <input
-          type="text"
-          placeholder="Tu nombre"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          style={{
-            marginLeft: "10px",
-            padding: "6px",
-            borderRadius: "5px",
-            border: "1px solid #ccc"
-          }}
-        />
+        {/* Campo de usuario con estilo mejorado */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "10px" }}>
+          <label style={{ color: "#fff", fontWeight: "bold" }}>👤 Usuario:</label>
+          <input
+            type="text"
+            placeholder="Ingresa tu nombre"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+            style={{
+              padding: "6px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+              outline: "none",
+              fontSize: "14px"
+            }}
+          />
+        </div>
 
         {/* Botón modo oscuro */}
         <button
@@ -71,8 +74,7 @@ function App() {
         <Route path="/top-favoritos" element={<TopFavoritos />} />
       </Routes>
 
-      <ToastContainer position="top-center" autoClose={2500} /> 
-      
+      <ToastContainer position="top-center" autoClose={2500} />
     </BrowserRouter>
   );
 }

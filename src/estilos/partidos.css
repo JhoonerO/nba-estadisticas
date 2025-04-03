@@ -1,5 +1,9 @@
 .partidos-container {
   padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .selector-fecha {
@@ -9,12 +13,17 @@
   display: block;
   max-width: 300px;
   width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lista-partidos {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  align-items: center;
 }
 
 .partido-card {
@@ -23,19 +32,39 @@
   padding: 16px;
   border: 1px solid #ddd;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 150px;  /* Altura fija */
+  width: 600px;   /* Ancho fijo */
+  margin: 0 auto; /* Centra las tarjetas */
 }
 
 .equipos {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  font-size: 18px;
-  font-weight: bold;
-  gap: 10px;
+  gap: 20px; /* Separación entre los equipos */
+  width: 100%;
 }
 
 .equipo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-equipo {
+  width: 50px;  /* Ajusta el tamaño del logo */
+  height: 40px;
+  object-fit: contain;
+}
+
+.resultado {
+  font-size: 20px;
+  font-weight: bold;
   color: #333;
 }
 
@@ -43,6 +72,7 @@
   font-size: 14px;
   color: #666;
   margin-top: 8px;
+  text-align: center;
 }
 
 .sin-partidos {
@@ -52,20 +82,91 @@
   text-align: center;
 }
 
-/* ✅ Responsive para pantallas pequeñas */
-@media (max-width: 480px) {
+.partido-proximo {
+  background-color: #FFEB3B;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.partido-proximo span {
+  font-weight: normal;
+}
+
+.buttons-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.button-date {
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-date:hover {
+  background-color: #303f9f;
+}
+
+@media (max-width: 768px) {
+  .partido-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    height: 180px;  /* Altura mínima ajustada para pantallas pequeñas */
+    width: 250px;   /* Ancho ajustado para pantallas pequeñas */
+  }
+
   .equipos {
     flex-direction: column;
-    align-items: flex-start;
-    font-size: 16px;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .logo-equipo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .estado {
+    font-size: 12px;
+    margin-top: 10px;
   }
 
   .selector-fecha {
-    font-size: 15px;
-    max-width: 100%;
+    font-size: 14px;
   }
 
-  .partido-card {
-    padding: 12px;
+  .button-date {
+    font-size: 14px;
+    padding: 8px 16px;
   }
+}
+.buttons-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.button-date {
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.button-date:hover {
+  background-color: #303f9f;
 }

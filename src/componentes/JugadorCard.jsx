@@ -51,9 +51,19 @@ function JugadorCard({ jugador, usuario }) {
       <p><strong>Universidad:</strong> {jugador.college || "No disponible"}</p>
       <p><strong>País:</strong> {jugador.country || "No disponible"}</p>
 
-      <button className="boton-favorito" onClick={agregarFavorito}>
-        ⭐ Agregar a favoritos
-      </button>
+      <button
+  className="boton-favorito"
+  onClick={agregarFavorito}
+  disabled={!usuario.trim()}
+  title={!usuario.trim() ? "Ingresa un nombre de usuario" : ""}
+  style={{
+    opacity: !usuario.trim() ? 0.5 : 1,
+    cursor: !usuario.trim() ? "not-allowed" : "pointer"
+  }}
+>
+  ⭐ Agregar a favoritos
+</button>
+
     </div>
   );
 }

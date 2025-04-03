@@ -35,10 +35,11 @@ app.post("/favoritos", async (req, res) => {
     "SELECT * FROM favoritos WHERE jugador_id = $1 AND usuario = $2",
     [jugador_id, usuario]
   );
-
+  
   if (yaExiste.rows.length > 0) {
     return res.status(409).json({ mensaje: "Ya votaste por este jugador." });
   }
+  
 
   // Si no existe, insertamos
   await pool.query(
