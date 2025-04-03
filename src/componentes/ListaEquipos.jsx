@@ -13,12 +13,26 @@ function ListaEquipos() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // Solo equipos activos con conferencia definida
         const activos = data.data.filter((e) => e.conference !== "");
         setEquipos(activos);
       })
       .catch((err) => console.error("Error al cargar equipos:", err));
   }, []);
+
+  // Nombres que no siguen el patrón exacto del archivo
+  const nombresEspeciales = {
+    "LA Clippers": "los-angeles-clippers",
+    "Philadelphia 76ers": "philadelphia-76ers",
+    "New Orleans Pelicans": "new-orleans-pelicans",
+    "San Antonio Spurs": "san-antonio-spurs"
+    // Agregá más si hace falta
+  };
+
+  // Función que obtiene el nombre del archivo de logo
+  const obtenerNombreLogo = (fullName) => {
+    const base = nombresEspeciales[fullName] || fullName.toLowerCase().replaceAll(" ", "-");
+    return `/logos/${base}.png`;
+  };
 
   return (
     <div className="equipos-container">
@@ -34,15 +48,12 @@ function ListaEquipos() {
               to={`/equipos/${equipo.id}`}
               className="equipo-card"
             >
-              {equipo.id <= 30 && (
-                <img
-                src={`https://cdn.nba.com/logos/nba/${equipo.id}/global/L/logo.svg`}
+              <img
+                src={obtenerNombreLogo(equipo.full_name)}
                 alt={equipo.full_name}
                 className="logo-equipo"
-                onError={(e) => e.target.style.display = "none"}
+                onError={(e) => (e.target.style.display = "none")}
               />
-              
-              )}
               <h3>{equipo.full_name}</h3>
               <p><strong>Ciudad:</strong> {equipo.city}</p>
               <p><strong>División:</strong> {equipo.division}</p>
@@ -60,15 +71,12 @@ function ListaEquipos() {
               to={`/equipos/${equipo.id}`}
               className="equipo-card"
             >
-              {equipo.id <= 30 && (
-               <img
-               src={`https://cdn.nba.com/logos/nba/${equipo.id}/global/L/logo.svg`}
-               alt={equipo.full_name}
-               className="logo-equipo"
-               onError={(e) => e.target.style.display = "none"}
-             />
-             
-              )}
+              <img
+                src={obtenerNombreLogo(equipo.full_name)}
+                alt={equipo.full_name}
+                className="logo-equipo"
+                onError={(e) => (e.target.style.display = "none")}
+              />
               <h3>{equipo.full_name}</h3>
               <p><strong>Ciudad:</strong> {equipo.city}</p>
               <p><strong>División:</strong> {equipo.division}</p>

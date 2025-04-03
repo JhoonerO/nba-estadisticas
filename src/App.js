@@ -6,6 +6,7 @@ import JugadoresEquipo from "./componentes/JugadoresEquipo";
 import Retirados from "./componentes/Retirados";
 import Favoritos from "./componentes/Favoritos";
 import { useUsuario } from "./context/UsuarioContext"; // 🧠 importamos el contexto
+import TopFavoritos from "./componentes/TopFavoritos";
 
 import "./estilos/nav.css";
 import "./estilos/index.css";
@@ -20,6 +21,7 @@ function App() {
         <Link to="/equipos">Equipos</Link>
         <Link to="/partidos">Partidos</Link>
         <Link to="/favoritos">Favoritos</Link>
+        <Link to="/top-favoritos">Top Votados</Link>
 
         {/* Campo para ingresar nombre de usuario */}
         <input
@@ -43,6 +45,7 @@ function App() {
         <Route path="/partidos" element={<Partidos />} />
         <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/retirados" element={<Retirados />} />
+        <Route path="/top-favoritos" element={<TopFavoritos />} />
       </Routes>
     </BrowserRouter>
   );

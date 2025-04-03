@@ -1,3 +1,4 @@
+import { useUsuario } from "../context/UsuarioContext";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JugadorCard from "./JugadorCard";
@@ -7,6 +8,7 @@ function JugadoresEquipo() {
   const { id } = useParams();
   const [jugadores, setJugadores] = useState([]);
   const [equipoNombre, setEquipoNombre] = useState("");
+  const { usuario } = useUsuario(); // ✅ Se usa abajo, así que todo bien
 
   useEffect(() => {
     // Cargar jugadores por ID de equipo
@@ -33,7 +35,8 @@ function JugadoresEquipo() {
         {jugadores.length > 0 ? (
           jugadores.map((j) => (
             <div key={j.id}>
-              <JugadorCard jugador={j} />
+              {/* ✅ Pasamos el usuario para que se guarde en la BD */}
+              <JugadorCard jugador={j} usuario={usuario} />
             </div>
           ))
         ) : (

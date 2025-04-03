@@ -43,6 +43,22 @@ app.delete("/favoritos/:jugador_id", async (req, res) => {
   res.json({ mensaje: "Favorito eliminado" });
 });
 
+// Obtener jugadores más votados
+app.get("/top-favoritos", async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT nombre, equipo, COUNT(*) AS votos
+      FROM favoritos
+      GROUP BY nombre, equipo
+      ORDER BY votos DESC
+    `);
+    res.json(result.rows);
+  } catch (error) {
+    console.error("❌ Error al obtener top favoritos:", error);
+    res.status(500).json({ error: "Error al obtener top favoritos" });
+  }
+});
+
 // Iniciar servidor
 app.listen(3001, () => {
   console.log("🚀 Servidor backend corriendo en http://localhost:3001");
