@@ -94,9 +94,9 @@ body.modo-oscuro .nav a:hover {
 
 body.modo-oscuro input,
 body.modo-oscuro select {
-  background-color: #222;
+  background-color: #2e2e2e;
   color: #f1f1f1;
-  border: 1px solid #555;
+  border: 1px solid #ffffff;
 }
 
 body.modo-oscuro .equipo-card,

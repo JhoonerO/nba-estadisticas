@@ -1,49 +1,60 @@
+/* Botón hamburguesa */
 .hamburguesa-btn {
     font-size: 26px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    position: fixed;      /* Fijo para que no se pierda al hacer scroll */
-    top: 15px;
+    position: fixed;
+    top: 20px;
     left: 15px;
     z-index: 3000;
     transition: color 0.3s ease, background 0.3s ease;
     border-radius: 6px;
   }
   
-  /* 🔆 Modo claro */
+  /* Modo claro */
   .modo-claro .hamburguesa-btn {
     color: black;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   
-  /* 🌙 Modo oscuro */
+  /* Modo oscuro */
   .modo-oscuro .hamburguesa-btn {
     color: white;
     background: transparent;
   }
   
-  /* 📱 Responsivo para pantallas pequeñas */
-  @media (max-width: 768px) {
-    .hamburguesa-btn {
-      font-size: 24px;
-      top: 10px;
-      left: 10px;
-      padding: 8px;
-    }
+  /* Botón cerrar */
+  .cerrar-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    margin-right: -10px;
+    transition: color 0.3s ease;
   }
   
-  /* --- Sidebar desplegable --- */
+  .modo-claro .cerrar-btn {
+    color: #2E3192;
+  }
+  
+  .modo-oscuro .cerrar-btn {
+    color: white;
+  }
+  
+  /* Sidebar */
   .sidebar {
     position: fixed;
     top: 0;
-    left: -250px;
-    width: 250px;
+    left: -260px;
+    width: 260px;
     height: 100%;
-    background: #2E3192;
-    padding: 20px;
+    padding: 25px 20px;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
     transition: left 0.3s ease;
     z-index: 2000;
@@ -56,24 +67,47 @@
     left: 0;
   }
   
+  /* Modo claro */
+  .modo-claro .sidebar {
+    background: #ffffff;
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  /* Modo oscuro */
+  .modo-oscuro .sidebar {
+    background: #0c0c0c;
+  }
+  
+  /* Enlaces del menú */
   .sidebar a {
-    color: white;
     font-weight: bold;
     text-decoration: none;
     font-size: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+  
+  /* Colores según tema */
+  .modo-claro .sidebar a {
+    color: #0c0c0c;
+    background-color: #e3e9ff;
+  }
+  
+  .modo-oscuro .sidebar a {
+    color: #ffffff;
+    background-color: #18204b;
   }
   
   .sidebar a:hover {
-    background: #4B50D4;
-    padding: 8px;
-    border-radius: 6px;
-    color: #FFD700;
+    background: #17408B;
+    color: #000000;
   }
   
-  /* --- Input usuario --- */
+  /* Input Usuario */
   .usuario-input {
     display: flex;
     flex-direction: column;
@@ -81,9 +115,16 @@
   }
   
   .usuario-input label {
-    color: white;
     font-weight: bold;
     margin-bottom: 5px;
+  }
+  
+  .modo-claro .usuario-input label {
+    color: #2e3192;
+  }
+  
+  .modo-oscuro .usuario-input label {
+    color: white;
   }
   
   .usuario-input input {
@@ -91,27 +132,61 @@
     border-radius: 5px;
     border: none;
     font-size: 14px;
+    background: #f5f5f5;
+    color: #333;
   }
   
-  /* --- Botón modo oscuro --- */
+  .modo-oscuro .usuario-input input {
+    background: #333;
+    color: white;
+  }
+  
+  /* Botón modo */
   .modo-btn {
     margin-top: auto;
     padding: 10px;
-    background-color: #FFD700;
-    color: #2E3192;
+    background-color: #2e3192;
+    color: #ffffff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.3s ease;
   }
   
-  /* --- Botón cerrar --- */
-  .cerrar-btn {
-    background: none;
-    border: none;
-    font-size: 22px;
-    color: white;
-    align-self: flex-end;
-    cursor: pointer;
+  .modo-btn:hover {
+    background-color: #000000;
+  }
+  
+  /* 📱 Responsive ajustes */
+  @media (max-width: 768px) {
+    .hamburguesa-btn {
+      font-size: 24px;
+      top: 15px;
+      left: 15px;
+      padding: 8px;
+    }
+  
+    .cerrar-btn {
+      font-size: 22px;
+      margin-right: -6px;
+    }
+  }
+  
+  /* 📱 Full pantalla en móviles */
+  @media (max-width: 480px) {
+    .sidebar {
+      width: 100%;
+      padding: 30px 20px;
+    }
+  
+    .sidebar a {
+      font-size: 18px;
+    }
+  
+    .modo-btn,
+    .usuario-input input {
+      font-size: 16px;
+    }
   }
   

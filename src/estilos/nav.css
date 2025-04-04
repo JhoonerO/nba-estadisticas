@@ -38,3 +38,9 @@ nav {
     margin-top: 10px;
   }
 }
+.nav-links {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

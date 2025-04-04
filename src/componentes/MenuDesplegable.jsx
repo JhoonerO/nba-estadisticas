@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUsuario } from "../context/UsuarioContext";
 import { useTema } from "../context/TemaContext";
-import "../estilos/menu.css"; // ✅ Ruta correcta al archivo
-
+import "../estilos/menu.css";
 
 function MenuDesplegable() {
   const [abierto, setAbierto] = useState(false);
@@ -16,14 +15,17 @@ function MenuDesplegable() {
         ☰
       </div>
 
-      <div className={`sidebar ${abierto ? "abierto" : ""}`}>
+      <div className={`sidebar ${abierto ? "abierto" : ""} ${oscuro ? "modo-oscuro" : "modo-claro"}`}>
         <button className="cerrar-btn" onClick={() => setAbierto(false)}>✖</button>
 
-        <Link to="/" onClick={() => setAbierto(false)}>🏀 Jugadores</Link>
-        <Link to="/equipos" onClick={() => setAbierto(false)}>🏆 Equipos</Link>
-        <Link to="/partidos" onClick={() => setAbierto(false)}>📅 Partidos</Link>
-        <Link to="/favoritos" onClick={() => setAbierto(false)}>⭐ Favoritos</Link>
-        <Link to="/top-favoritos" onClick={() => setAbierto(false)}>🔥 Top Votados</Link>
+        {/* 🟡 Enlaces agrupados para mejor control de margen */}
+        <div className="nav-links">
+          <Link to="/" onClick={() => setAbierto(false)}>🏀 Jugadores</Link>
+          <Link to="/equipos" onClick={() => setAbierto(false)}>🏆 Equipos</Link>
+          <Link to="/partidos" onClick={() => setAbierto(false)}>📅 Partidos</Link>
+          <Link to="/favoritos" onClick={() => setAbierto(false)}>⭐ Favoritos</Link>
+          <Link to="/top-favoritos" onClick={() => setAbierto(false)}>🔥 Top Votados</Link>
+        </div>
 
         <div className="usuario-input">
           <label>👤 Usuario:</label>
