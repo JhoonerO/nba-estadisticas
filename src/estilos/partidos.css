@@ -37,16 +37,21 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 150px;  /* Altura fija */
-  width: 600px;   /* Ancho fijo */
-  margin: 0 auto; /* Centra las tarjetas */
+  height: 150px;
+  width: 600px;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.partido-card:hover {
+  transform: scale(1.01);
 }
 
 .equipos {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px; /* Separación entre los equipos */
+  gap: 20px;
   width: 100%;
 }
 
@@ -57,7 +62,7 @@
 }
 
 .logo-equipo {
-  width: 50px;  /* Ajusta el tamaño del logo */
+  width: 50px;
   height: 40px;
   object-fit: contain;
 }
@@ -100,60 +105,10 @@
 .buttons-container {
   margin-top: 20px;
   text-align: center;
-}
-
-.button-date {
-  background-color: #3f51b5;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.button-date:hover {
-  background-color: #303f9f;
-}
-
-@media (max-width: 768px) {
-  .partido-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    height: 180px;  /* Altura mínima ajustada para pantallas pequeñas */
-    width: 250px;   /* Ancho ajustado para pantallas pequeñas */
-  }
-
-  .equipos {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .logo-equipo {
-    width: 50px;
-    height: 50px;
-  }
-
-  .estado {
-    font-size: 12px;
-    margin-top: 10px;
-  }
-
-  .selector-fecha {
-    font-size: 14px;
-  }
-
-  .button-date {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
-.buttons-container {
-  margin-top: 20px;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .button-date {
@@ -169,4 +124,52 @@
 
 .button-date:hover {
   background-color: #303f9f;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+  .partido-card {
+    width: 90%;
+    height: auto;
+    padding: 12px;
+  }
+
+  .equipos {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .equipo {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .logo-equipo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .estado {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .selector-fecha {
+    font-size: 14px;
+    width: 90%;
+  }
+
+  .button-date {
+    width: 45%;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
+  }
+
+  .buttons-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }

@@ -1,14 +1,10 @@
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  background-color: #17408B;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #000000;
+nav {
+  background-color: transparent; /* Quitar el fondo azul */
+  height: auto; /* Ajusta la altura según lo que haya dentro */
+  box-shadow: none; /* Por si tiene sombras */
+  padding: 0; /* Elimina espacio extra */
 }
+
 
 .nav a {
   color: #fff;

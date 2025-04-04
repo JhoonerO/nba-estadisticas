@@ -5,6 +5,7 @@ import JugadorCard from "./JugadorCard";
 import "../estilos/jugadores.css";
 
 // 👇 Función para mostrar el logo
+
 const nombresEspeciales = {
   "LA Clippers": "los-angeles-clippers",
   "Philadelphia 76ers": "philadelphia-76ers",
@@ -41,6 +42,7 @@ function JugadoresEquipo() {
 
   return (
     <div className="jugadores-container">
+
       {/* 👇 Mostrar el logo del equipo si ya cargó */}
       {equipoNombre && (
         <img

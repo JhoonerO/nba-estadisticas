@@ -1,0 +1,117 @@
+.hamburguesa-btn {
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;      /* Fijo para que no se pierda al hacer scroll */
+    top: 15px;
+    left: 15px;
+    z-index: 3000;
+    transition: color 0.3s ease, background 0.3s ease;
+    border-radius: 6px;
+  }
+  
+  /* 🔆 Modo claro */
+  .modo-claro .hamburguesa-btn {
+    color: black;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 🌙 Modo oscuro */
+  .modo-oscuro .hamburguesa-btn {
+    color: white;
+    background: transparent;
+  }
+  
+  /* 📱 Responsivo para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .hamburguesa-btn {
+      font-size: 24px;
+      top: 10px;
+      left: 10px;
+      padding: 8px;
+    }
+  }
+  
+  /* --- Sidebar desplegable --- */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #2E3192;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .sidebar.abierto {
+    left: 0;
+  }
+  
+  .sidebar a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .sidebar a:hover {
+    background: #4B50D4;
+    padding: 8px;
+    border-radius: 6px;
+    color: #FFD700;
+  }
+  
+  /* --- Input usuario --- */
+  .usuario-input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  
+  .usuario-input label {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .usuario-input input {
+    padding: 6px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+  }
+  
+  /* --- Botón modo oscuro --- */
+  .modo-btn {
+    margin-top: auto;
+    padding: 10px;
+    background-color: #FFD700;
+    color: #2E3192;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  /* --- Botón cerrar --- */
+  .cerrar-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: white;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+  
